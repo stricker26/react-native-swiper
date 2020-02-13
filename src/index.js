@@ -23,7 +23,7 @@ const styles = {
   container: {
     backgroundColor: 'transparent',
     position: 'relative',
-    flex: 1
+    // flex: 1
   },
 
   wrapperIOS: {
@@ -811,7 +811,8 @@ export default class extends Component {
     const loopVal = loop ? 1 : 0
     let pages = []
 
-    const pageStyle = [{ width: width, height: height }, styles.slide]
+    // const pageStyle = [{ width: width, height: height }, styles.slide]
+    const pageStyle = [{ width: width }, styles.slide]
     const pageStyleLoading = {
       width,
       height,
