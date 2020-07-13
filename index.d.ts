@@ -2,12 +2,13 @@ import {
   ViewStyle,
   StyleProp,
   NativeSyntheticEvent,
-  NativeScrollEvent
+  NativeScrollEvent,
+  ScrollViewProps
 } from 'react-native'
 import { Component } from 'react'
 
 declare module 'react-native-swiper' {
-  interface SwiperState {
+  interface SwiperStates {
     autoplayEnd: false
     loopJump: false
     width: number
@@ -21,11 +22,12 @@ declare module 'react-native-swiper' {
     dir: 'x' | 'y'
   }
 
-  interface SwiperInternals extends SwiperState {
+  interface SwiperInternals extends SwiperStates {
     isScrolling: boolean
   }
 
-  interface SwiperProps {
+  interface SwiperProps
+    extends Omit<ScrollViewProps, 'onScrollBeginDrag' | 'onMomentumScrollEnd'> {
     // Basic
     // If true, the scroll view's children are arranged horizontally in a row instead of vertically in a column.
     horizontal?: boolean
@@ -138,8 +140,8 @@ declare module 'react-native-swiper' {
     scrollEnabled?: boolean
   }
 
-  export default class Swiper extends Component<SwiperProps, SwiperState> {
-    scrollBy: (index?: number, animated?: boolean) => void;
-    scrollTo: (index: number, animated?: boolean) => void;
+  export default class Swiper extends Component<SwiperProps> {
+    scrollBy: (index?: number, animated?: boolean) => void
+    scrollTo: (index: number, animated?: boolean) => void
   }
 }
